@@ -1,0 +1,1 @@
+﻿export const Tidbits = "This package doesn't so anything! :-O"

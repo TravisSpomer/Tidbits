@@ -1,6 +1,6 @@
 {
 	"name": "@travisspomer/tidbits",
-	"version": "0.1.1",
+	"version": "1.0.0",
 	"description": "A selection of self-contained JavaScript tidbits by Travis Spomer.",
 	"author": "Travis Spomer <travis+github@greeneclipsesoftware.com> (https://github.com/TravisSpomer)",
 	"license": "MIT",

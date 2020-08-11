@@ -1,31 +1,3 @@
-/*
-	Historical UI
-
-	A small utility that allows you to control one or more mutually-exclusive popup UIs using the history stack. For example,
-	if you have two potential popups, then open the first one, then open the second one, the first one would get closed first.
-	Then, if you use the browser's back button, the second one gets closed as well. Then, the forward button would make it reopen.
-
-	Example:
-
-		import { HistoricalUI } from "@travisspomer/tidbits"
-
-		const popupController = HistoricalUI.add({
-			onStateChange: (ev) => {
-				if (ev.state)
-					myPopup.style.removeProperty("display")
-				else
-					myPopup.style.display = "none"
-			}
-		})
-
-		myButton.addEventListener("click", () => popupController.state = !popupController.state)
-
-	In this example, the popup is visible when popupController.state is true, and hidden when it's false or null. A button click event toggles the
-	popup's visibility manually. In addition, HistoricalUI sets the state to null when the user presses the Back button, or another UI that
-	was registered with add() is opened.
-*/
-
-
 const RootStateKey = "__HistoricalUI"
 
 interface AddParams<StateType>

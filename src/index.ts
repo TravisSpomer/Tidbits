@@ -1,1 +1,9 @@
-﻿export { HistoricalUI } from "./historical-ui"
+﻿export
+{
+	HistoricalUI,
+	AddParams,
+	HistoricalUIElement,
+	StateChangeEvent,
+	StateChangeEventHandler,
+}
+from "./historical-ui"

@@ -1,3 +1,3 @@
-# Travis's Tidbits: documentation
+# Documentation
 
-* [Historical UI](historical-ui.md): A small utility that allows you to control one or more mutually-exclusive popup UIs using the history stack.
+This folder contains the documentation for the utilities in the package. For a full list, see the [readme](../Readme.md).

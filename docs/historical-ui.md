@@ -44,6 +44,18 @@ Tip: In TypeScript, you can supply a state type to get a strongly-typed object i
 
 If you supply a `key`, HistoricalUI will attempt to "rehydrate" the state of that element if the page is refreshed, or if the user navigates away and then back.
 
+## `remove`
+
+```ts
+HistoricalUI.remove(
+	controller: HistoricalUIElement
+): void
+```
+
+* `controller`: The object returned from `add()` to remove.
+
+Removes an object from being managed by HistoricalUI. In a single-page application, you can use this to stop managing the state of a component when the component is about to be destroyed and you'll no longer have the reference to the `HistoricalUIElement`.
+
 ### `StateChangeEvent`
 
 A `StateChangeEvent` object is passed to your `onStateChange` handler.
@@ -72,6 +84,7 @@ A `HistoricalUIElement` object is returned from `add()`.
 interface HistoricalUIElement<StateType>
 {
 	state: StateType | null
+	readonly key: string
 }
 ```
 
@@ -80,3 +93,39 @@ interface HistoricalUIElement<StateType>
 The current state of your UI element. You can change this property to trigger a state change. In TypeScript, if you supplied a type to `add()`, this property will be that same type or `null`.
 
 **Important:** Setting any UI element's state to a non-falsy value will set all other registered UI elements to `null`. All falsy state values are treated as `null`.
+
+#### `key`
+
+Read-only. The key supplied to `add()`, or a randomly-generated one.
+
+# Using it from React
+
+You could use HistoricalUI from React too, but it's a bit more complicated, especially if you're using server-side rendering such as with Next.js.
+
+* Use a class component, not a function component.
+* Add an `async componentDidMount` method. In it, import the tidbits module dynamically rather than with an `import` statement at the top of the file, so the module doesn't get loaded on the server where it won't work:
+	```ts
+	const Dynamic = await import("@travisspomer/tidbits")
+	this.popupController = Dynamic.HistoricalUI.add({
+		key: "popup",
+		onStateChange: (ev) => this.setState({ isPopupOpen: !!ev.state }),
+	})
+	```
+* In your `onStateChange` event handler, copy the current state managed by HistoricalUI into your React component's state. This should be the only time that you modify that state value.
+* If this component will repeatedly mount and unmount, also add an `async componentWillUnmount`:
+	```ts
+	const Dynamic = await import("@travisspomer/tidbits")
+	Dynamic.HistoricalUI.remove(this.popupController)
+	```
+* When you want to change the UI state, do so on the controller object instead of through your component's React state.
+	```jsx
+	<button
+		onClick={() => this.popupController.state = !this.state.isPopupOpen}
+	>
+		Toggle popup
+	</button>
+	```
+* Then, use your React component state during `render()` normally:
+	```jsx
+	{this.state.isPopupOpen && <div className="my-popup">Yo I'm a popup</div>}
+	```

@@ -15,6 +15,8 @@ interface HistoricalUI
 	/// Sets up a portion of your UI to have its state controlled by the navigation history.
 	/// Returns an object with a "state" property that lets you change the state of the object manually.
 	add<StateType>(params: AddParams<StateType>): HistoricalUIElement<StateType>
+	/// Removes a state controller (the object returned from add()) from being managed by HistoricalUI.
+	remove<StateType>(controller: HistoricalUIElement<StateType>): void
 }
 
 interface HistoryStateValue
@@ -56,6 +58,13 @@ class HistoricalUIImpl implements HistoricalUI
 		this._registeredControllers.set(controller.key, controller)
 		this.rehydrate() // in case this is already the active controller due to refreshing the page
 		return controller
+	}
+
+	public remove<StateType>(controller: HistoricalUIElement<StateType>)
+	{
+		this._registeredControllers.delete(controller.key)
+		if (history && history.state && history.state[RootStateKey] && controller.key in history.state[RootStateKey])
+			delete history.state[RootStateKey][controller.key]
 	}
 
 	public get activeController(): HistoricalUIElementImpl<any> | null
@@ -147,6 +156,8 @@ export interface HistoricalUIElement<StateType>
 	/// The state of the element.
 	/// Important: All falsy values are treated as null.
 	state: StateType | null
+	/// The key passed into add(), or a randomly-generated one.
+	readonly key: string
 }
 
 class HistoricalUIElementImpl<StateType> implements HistoricalUIElement<StateType>

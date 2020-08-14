@@ -1,6 +1,6 @@
 const RootStateKey = "__HistoricalUI"
 
-interface AddParams<StateType>
+export interface AddParams<StateType>
 {
 	/// Optionally, a key that uniquely represents this UI. It will be accessible from the state change event, and
 	/// can be used to rehydrate state after navigating away or refreshing page.
@@ -128,10 +128,11 @@ class HistoricalUIImpl implements HistoricalUI
 	}
 }
 const HistoricalUIInstance = new HistoricalUIImpl()
-export default HistoricalUIInstance as HistoricalUI
-export { HistoricalUIInstance as HistoricalUI }
+const PublicAPI = HistoricalUIInstance as HistoricalUI
+export default PublicAPI
+export { PublicAPI as HistoricalUI }
 
-interface StateChangeEvent<StateType>
+export interface StateChangeEvent<StateType>
 {
 	/// The controller raising the event.
 	readonly controller: HistoricalUIElement<StateType>
@@ -139,9 +140,9 @@ interface StateChangeEvent<StateType>
 	readonly state: any
 }
 
-type StateChangeEventHandler<StateType> = (ev: StateChangeEvent<StateType>) => void
+export type StateChangeEventHandler<StateType> = (ev: StateChangeEvent<StateType>) => void
 
-interface HistoricalUIElement<StateType>
+export interface HistoricalUIElement<StateType>
 {
 	/// The state of the element.
 	/// Important: All falsy values are treated as null.

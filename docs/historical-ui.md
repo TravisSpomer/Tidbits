@@ -129,3 +129,5 @@ You could use HistoricalUI from React too, but it's a bit more complicated, espe
 	```jsx
 	{this.state.isPopupOpen && <div className="my-popup">Yo I'm a popup</div>}
 	```
+
+Keep in mind that the router that your JavaScript framework uses may limit some or all of the functionality of Historical UI—it may not have been written to support other libraries accessing the history API.

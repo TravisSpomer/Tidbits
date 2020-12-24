@@ -1,4 +1,5 @@
-﻿export
+﻿export { toBoolean } from "./convert"
+export
 {
 	HistoricalUI,
 	AddParams,

@@ -3,10 +3,11 @@
 * [Source code on GitHub](https://github.com/TravisSpomer/Tidbits)
 * [Package on NPM](https://npmjs.com/@travisspomer/tidbits)
 
-Travis's Tidbits is a collection of JavaScript utilities with no dependencies, provided as ES Modules.
+Travis's Tidbits is a collection of TypeScript utilities with no dependencies, provided as ES Modules.
 
 ## Utilities
 
+* [Conversions](docs/convert.md): Conversion utilities.
 * [Historical UI](docs/historical-ui.md): A small utility that allows you to control one or more mutually-exclusive popup UIs using the history stack.
 
 ---

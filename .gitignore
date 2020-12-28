@@ -1,1 +1,9 @@
-/build
+# Build output
+build/
+
+# Yarn cache
+.yarn/
+.pnp.js
+
+# Node.js modules
+node_modules/

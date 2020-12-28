@@ -5,6 +5,7 @@
 	Anything else throws an exception.
 	@param value A value to convert to a Boolean.
 */
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const toBoolean = (value: any): boolean =>
 {
 	if (value === true || value === 1) return true

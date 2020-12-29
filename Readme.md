@@ -8,6 +8,7 @@ Travis's Tidbits is a collection of TypeScript utilities with no dependencies, p
 ## Utilities
 
 * [Conversions](docs/convert.md): Conversion utilities.
+* [Delay](docs/delay.md): Utilities for delaying function calls.
 * [Historical UI](docs/historical-ui.md): A small utility that allows you to control one or more mutually-exclusive popup UIs using the history stack.
 
 ---

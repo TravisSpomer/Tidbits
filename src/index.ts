@@ -1,4 +1,5 @@
 ﻿export { toBoolean } from "./convert"
+export { throttle, delay } from "./delay"
 export
 {
 	HistoricalUI,
@@ -7,4 +8,4 @@ export
 	StateChangeEvent,
 	StateChangeEventHandler,
 }
-from "./historical-ui"
+	from "./historical-ui"

@@ -1,0 +1,46 @@
+Watch the console. This doesn't work correctly yet.
+
+<script type="module">
+
+const throttleOrDelayCore = (immediate, interval, func) => {
+    if (interval <= 0)
+        throw new Error("Interval must be a positive number, in milliseconds.");
+    let throttleUntil = 0, wasThrottled = false;
+    const timerCallback = () => {
+        func();
+        throttleUntil = 0;
+        wasThrottled = false;
+    };
+    return () => {
+        const now = Date.now();
+        if ((!immediate) || (throttleUntil !== 0 && now < throttleUntil)) {
+            if (!wasThrottled) {
+                if (throttleUntil === 0)
+                    throttleUntil = now + interval;
+				setTimeout(timerCallback, interval);
+				if (immediate) console.log("Throttle: currently ", now, "; waiting until ", throttleUntil)
+                wasThrottled = true;
+            }
+        }
+        else {
+			console.log("  else case")
+            throttleUntil = now + interval;
+            func();
+        }
+    };
+};
+export const throttle = throttleOrDelayCore.bind(null, true);
+export const delay = throttleOrDelayCore.bind(null, false);
+
+const myFunction = () => console.log("Unthrottled call", Date.now())
+const delayedFunction = delay(1000, () => console.log("Delayed with delay()", Date.now()))
+const throttledFunction = throttle(1000, () => console.log("Throttled with throttle()", Date.now()))
+
+setInterval(() =>
+{
+	// myFunction()
+	// delayedFunction()
+	throttledFunction()
+}, 300)
+
+</script>

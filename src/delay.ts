@@ -1,3 +1,5 @@
+// NOTE: This doesn't work correctly yet; see delay.html
+
 const throttleOrDelayCore = (immediate: boolean, interval: number, func: () => void) =>
 {
 	if (interval <= 0) throw new Error("Interval must be a positive number, in milliseconds.")

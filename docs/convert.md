@@ -2,12 +2,18 @@
 
 Utilities for converting data types.
 
-# `toBoolean`
+Example:
 
 ```ts
 import { toBoolean } from "@travisspomer/tidbits"
 
 const trueOrFalse: boolean = toBoolean(value)
+```
+
+# `toBoolean`
+
+```ts
+toBoolean(value: any): boolean
 ```
 
 * `value`: A string or number to be converted to a Boolean. (Or, an existing Boolean will be returned as-is.)

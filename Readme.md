@@ -4,6 +4,7 @@ Travis's Tidbits is a collection of TypeScript utilities with no dependencies, p
 
 * **[Documentation](https://travisspomer.github.io/Tidbits)**
 * [Source code on GitHub](https://github.com/TravisSpomer/Tidbits)
+* [Package on NPM](https://www.npmjs.com/package/@travisspomer/tidbits)
 
 ---
 

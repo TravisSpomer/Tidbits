@@ -2,7 +2,7 @@
 
 Travis's Tidbits is a collection of TypeScript utilities with no dependencies, provided as ES Modules.
 
-* **[Documentation](https://travisspomer.github.io/tidbits)**
+* **[Documentation](https://travisspomer.github.io/Tidbits)**
 * [Source code on GitHub](https://github.com/TravisSpomer/Tidbits)
 
 ---

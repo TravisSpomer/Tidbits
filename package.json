@@ -26,6 +26,9 @@
 	"files": [
 		"build/**/*"
 	],
+	"publishConfig": {
+		"access": "public"
+	},
 	"main": "build/index.js",
 	"types": "build/index.d.ts",
 	"scripts": {

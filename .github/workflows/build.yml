@@ -21,6 +21,6 @@ jobs:
         node-version: 12.x
 
     - name: Build project
+      # Normally you'd "npm install" or "npm ci" here too, but Tidbits has no dependencies.
       run: |
-        npm ci
         npm run build --if-present

@@ -1,6 +1,6 @@
 {
 	"name": "@travisspomer/tidbits",
-	"version": "1.0.4",
+	"version": "1.0.5",
 	"description": "A selection of self-contained TypeScript tidbits by Travis Spomer.",
 	"author": "Travis Spomer (https://github.com/TravisSpomer)",
 	"license": "MIT",

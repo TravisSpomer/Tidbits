@@ -137,18 +137,29 @@ class HistoricalUIImpl implements HistoricalUI
 	}
 }
 
-const HistoricalUIServerInstance: HistoricalUI =
+let HistoricalUIInstance: HistoricalUIImpl
+const isBrowser = !!globalThis && "window" in globalThis
+function getInstance()
 {
-	add<StateType>(): HistoricalUIElement<StateType>
-	{
-		return null as unknown as HistoricalUIElement<StateType>
-	},
-	remove(): void
-	{ /* noop */ },
+	if (HistoricalUIInstance)
+		return HistoricalUIInstance
+	else if (!isBrowser)
+		return null as unknown as HistoricalUIImpl
+	else
+		return HistoricalUIInstance = new HistoricalUIImpl()
 }
 
-const HistoricalUIInstance = (globalThis && "window" in globalThis) ? new HistoricalUIImpl() : HistoricalUIServerInstance as unknown as HistoricalUIImpl
-const PublicAPI = HistoricalUIInstance as HistoricalUI
+const PublicAPI: HistoricalUI =
+{
+	add<StateType>(params: AddParams<StateType>): HistoricalUIElement<StateType>
+	{
+		return getInstance()?.add(params)
+	},
+	remove<StateType>(controller: HistoricalUIElement<StateType>): void
+	{
+		return getInstance()?.remove(controller)
+	},
+}
 
 interface StateChangeEvent<StateType>
 {

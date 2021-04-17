@@ -147,7 +147,7 @@ const HistoricalUIServerInstance: HistoricalUI =
 	{ /* noop */ },
 }
 
-const HistoricalUIInstance = (globalThis && !("window" in globalThis)) ? new HistoricalUIImpl() : HistoricalUIServerInstance as unknown as HistoricalUIImpl
+const HistoricalUIInstance = (globalThis && "window" in globalThis) ? new HistoricalUIImpl() : HistoricalUIServerInstance as unknown as HistoricalUIImpl
 const PublicAPI = HistoricalUIInstance as HistoricalUI
 
 interface StateChangeEvent<StateType>

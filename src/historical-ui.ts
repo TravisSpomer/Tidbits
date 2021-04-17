@@ -153,11 +153,13 @@ const PublicAPI: HistoricalUI =
 {
 	add<StateType>(params: AddParams<StateType>): HistoricalUIElement<StateType>
 	{
-		return getInstance()?.add(params)
+		const i = getInstance()
+		return i ? i.add(params) : null as unknown as HistoricalUIElement<StateType>
 	},
 	remove<StateType>(controller: HistoricalUIElement<StateType>): void
 	{
-		return getInstance()?.remove(controller)
+		const i = getInstance()
+		return i ? i.remove(controller) : undefined
 	},
 }
 

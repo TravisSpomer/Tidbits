@@ -60,7 +60,7 @@ class HistoricalUIImpl implements HistoricalUI
 		return controller
 	}
 
-	public remove<StateType>(controller: HistoricalUIElement<StateType>)
+	public remove<StateType>(controller: HistoricalUIElement<StateType>): void
 	{
 		this._registeredControllers.delete(controller.key)
 		if (history && history.state && history.state[RootStateKey] && controller.key in history.state[RootStateKey])
@@ -136,7 +136,18 @@ class HistoricalUIImpl implements HistoricalUI
 		this._isRehydrating = false
 	}
 }
-const HistoricalUIInstance = new HistoricalUIImpl()
+
+const HistoricalUIServerInstance: HistoricalUI =
+{
+	add<StateType>(): HistoricalUIElement<StateType>
+	{
+		return null as unknown as HistoricalUIElement<StateType>
+	},
+	remove(): void
+	{ /* noop */ },
+}
+
+const HistoricalUIInstance = (globalThis && !("window" in globalThis)) ? new HistoricalUIImpl() : HistoricalUIServerInstance as unknown as HistoricalUIImpl
 const PublicAPI = HistoricalUIInstance as HistoricalUI
 
 interface StateChangeEvent<StateType>

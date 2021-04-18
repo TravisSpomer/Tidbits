@@ -1,4 +1,5 @@
 ﻿export { toBoolean } from "./convert"
+export { throttle, delay } from "./delay"
 export
 {
 	HistoricalUI,
